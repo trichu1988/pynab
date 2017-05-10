@@ -2,6 +2,7 @@ import sys
 import os
 import json
 import time
+import traceback
 
 if __name__ == '__main__':
     print('Welcome to Pynab.')
@@ -118,6 +119,7 @@ if __name__ == '__main__':
         nzedb_pre_import.largeNzedbPre()
         nzedb_pre_import.nzedbPre()
     except Exception as e:
+        traceback.print_exc()
         print('Problem inserting data into database: {}'.format(e))
         sys.exit(0)
 
