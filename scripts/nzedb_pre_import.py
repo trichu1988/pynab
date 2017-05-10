@@ -51,9 +51,10 @@ INSERTFAILS = []
 def nzedbPre():
     downloadLinks = []
     try:
-        rawpreJSON = urllib.request.urlopen("https://api.github.com/repositories/45781004/contents/dumps").read()
+        rawpreJSON = urllib.request.urlopen("https://api.github.com/repos/nZEDb/nZEDbPre_Dumps/contents/dumps").read()
     except:
         print("pre-import: Error connecting to dropbox, try again later")
+#TODO: adding the the new query base on nzedb github structure
 
     try:
         data = open('lastfile.json')
@@ -70,7 +71,7 @@ def nzedbPre():
 
     # Try and process each of the csv's. If they are
     for preCSV in downloadLinks:
-        processingFile = FILENAME_REGEX.search(preCSV).groupdict()
+        processingFile = FILENAME_REGEX.search(str(preCSV)).groupdict()
 
         if lastFileFromDisk is None or int(processingFile['lastfile']) > lastFileFromDisk['lastfile']:
 
